@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regex Query Tool</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Regex Query Tool</h1>
+
+    <form method="POST">
+        <label>Enter Text</label>
+        <textarea name="text" rows="8" placeholder="Type your text here..." required></textarea>
+
+        <label>Enter Regex Pattern</label>
+        <input type="text" name="pattern" placeholder="e.g. \d+" required>
+
+        <button type="submit">Find Matches</button>
+    </form>
+
+    {% if error %}
+        <div class="error">{{ error }}</div>
+    {% endif %}
+
+    {% if matches %}
+        <div class="results">
+            <h2>Matches Found:</h2>
+            <ul>
+                {% for match in matches %}
+                    <li>{{ match }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
